@@ -1,0 +1,65 @@
+import { ref } from "vue";
+import Velocity from 'velocity-animate'
+
+// Toggle mobile menu
+const activeMobileMenu = ref(false);
+const toggleMobileMenu = () => {
+  activeMobileMenu.value = !activeMobileMenu.value;
+};
+
+// Setup side menu
+const findActiveMenu = (subMenu, route) => {
+  let match = false
+  subMenu.forEach(item => {
+    if (item.pageName === route.name && !item.ignore) {
+      match = true
+    } else if (!match && item.subMenu) {
+      match = findActiveMenu(item.subMenu, route)
+    }
+  })
+  return match
+}
+
+const nestedMenu = (menu, route) => {
+  menu.forEach((item, key) => {
+    if (typeof item !== 'string') {
+      let menuItem = menu[key]
+      menuItem.active =
+        (item.pageName === route.name ||
+          (item.subMenu && findActiveMenu(item.subMenu, route))) &&
+        !item.ignore
+
+      if (item.subMenu) {
+        menuItem.activeDropdown = findActiveMenu(item.subMenu, route)
+        menuItem = {
+          ...item,
+          ...nestedMenu(item.subMenu, route)
+        }
+      }
+    }
+  })
+
+  return menu
+}
+
+const linkTo = (menu, router, event) => {
+  if (menu.subMenu) {
+    menu.activeDropdown = !menu.activeDropdown
+  } else {
+    event.preventDefault()
+    activeMobileMenu.value = false;
+    router.push({
+      name: menu.pageName
+    })
+  }
+}
+
+const enter = (el, done) => {
+  Velocity(el, 'slideDown', { duration: 300 }, { complete: done })
+}
+
+const leave = (el, done) => {
+  Velocity(el, 'slideUp', { duration: 300 }, { complete: done })
+}
+
+export { activeMobileMenu, toggleMobileMenu, nestedMenu, linkTo, enter, leave }
