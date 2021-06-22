@@ -5,9 +5,15 @@
       <div
         class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center justify-between mt-2"
       >
-        <button class="btn btn-primary shadow-md mr-2">
+        <a
+          href="javascript:;"
+          data-toggle="modal"
+          data-target="#coa-form"
+          class="btn btn-primary shadow-md mr-2"
+        >
           <PlusIcon class="w-4 h-4 mr-2" /> New Account
-        </button>
+        </a>
+        <CoaForm :types="types" />
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
           <div class="w-56 relative text-gray-700 dark:text-gray-300">
             <input
@@ -194,3 +200,34 @@
     <!-- END: Delete Confirmation Modal -->
   </div>
 </template>
+
+<script>
+import { defineComponent, onMounted, ref, reactive, provide } from 'vue'
+import CoaForm from './CoaForm.vue'
+import API from '@/services/api'
+
+export default defineComponent({
+  components: {
+    CoaForm
+  },
+  setup() {
+    onMounted(async () => {
+      await fetchTypes()
+      await fetchAccounts()
+    })
+
+    const types = ref({})
+    const accounts = ref([])
+
+    const fetchTypes = async () => {
+      API.get('/account/types').then(({ data }) => (types.value = data))
+    }
+
+    const fetchAccounts = async () => {
+      API.get('/accounts').then(({ data }) => (accounts.value = data))
+    }
+
+    return { types, accounts }
+  }
+})
+</script>

@@ -14,33 +14,33 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, computed } from "vue";
-import { useStore } from "@/store";
+import { defineComponent, onMounted, computed } from 'vue'
+import { useStore } from '@/store'
 
 export default defineComponent({
   setup() {
-    const store = useStore();
-    const darkMode = computed(() => store.state.main.darkMode);
+    const store = useStore()
+    const darkMode = computed(() => store.state.main.darkMode)
 
     const setDarkModeClass = () => {
       darkMode.value
-        ? cash("html").addClass("dark")
-        : cash("html").removeClass("dark");
-    };
+        ? cash('html').addClass('dark')
+        : cash('html').removeClass('dark')
+    }
 
     const switchMode = () => {
-      store.dispatch("main/setDarkMode", !darkMode.value);
-      setDarkModeClass();
-    };
+      store.dispatch('main/setDarkMode', !darkMode.value)
+      setDarkModeClass()
+    }
 
     onMounted(() => {
-      setDarkModeClass();
-    });
+      setDarkModeClass()
+    })
 
     return {
       switchMode,
       darkMode
-    };
+    }
   }
-});
+})
 </script>

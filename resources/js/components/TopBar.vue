@@ -2,14 +2,14 @@
   <!-- BEGIN: Top Bar -->
   <div class="top-bar">
     <!-- BEGIN: Breadcrumb -->
-    <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
+    <!-- <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
       <a href="">Application</a>
       <ChevronRightIcon class="breadcrumb__icon" />
       <a href="" class="breadcrumb--active">Dashboard</a>
-    </div>
+    </div> -->
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
-    <div class="intro-x relative mr-3 sm:mr-6">
+    <div class="-intro-x relative mr-3 sm:mr-auto">
       <div class="search hidden sm:block">
         <input
           type="text"
@@ -23,10 +23,10 @@
       <a class="notification sm:hidden" href="">
         <SearchIcon class="notification__icon dark:text-gray-300" />
       </a>
-      <div class="search-result" :class="{ show: searchDropdown }">
+      <div class="search-result left-0 mt-4" :class="{ show: searchDropdown }">
         <div class="search-result__content">
-          <div class="search-result__content__title">Pages</div>
-          <div class="mb-5">
+          <div class="search-result__content__title">Results</div>
+          <!-- <div class="mb-5">
             <a href="" class="flex items-center">
               <div
                 class="w-8 h-8 bg-theme-18 text-theme-9 flex items-center justify-center rounded-full"
@@ -61,8 +61,17 @@
               class="flex items-center mt-2"
             >
               <div class="w-8 h-8 image-fit">
-                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                <svg
+                  class="ml-2 -mr-0.5 h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </div>
               <div class="ml-3">{{ faker.users[0].name }}</div>
@@ -81,64 +90,30 @@
             class="flex items-center mt-2"
           >
             <div class="w-8 h-8 image-fit">
-              <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              <svg
+                class="ml-2 -mr-0.5 h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
               </svg>
             </div>
             <div class="ml-3">{{ faker.products[0].name }}</div>
             <div class="ml-auto w-48 truncate text-gray-600 text-xs text-right">
               {{ faker.products[0].category }}
             </div>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
     <!-- END: Search -->
     <!-- BEGIN: Notifications -->
-    <div class="intro-x dropdown mr-auto sm:mr-6">
-      <div
-        class="dropdown-toggle notification notification--bullet cursor-pointer"
-        role="button"
-        aria-expanded="false"
-      >
-        <BellIcon class="notification__icon dark:text-gray-300" />
-      </div>
-      <div class="notification-content pt-2 dropdown-menu">
-        <div
-          class="notification-content__box dropdown-menu__content box dark:bg-dark-6"
-        >
-          <div class="notification-content__title">Notifications</div>
-          <div
-            v-for="(faker, fakerKey) in $_.take($f(), 5)"
-            :key="fakerKey"
-            class="cursor-pointer relative flex items-center"
-            :class="{ 'mt-5': fakerKey }"
-          >
-            <div class="w-12 h-12 flex-none image-fit mr-1">
-              <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-              <div
-                class="w-3 h-3 bg-theme-9 absolute right-0 bottom-0 rounded-full border-2 border-white"
-              ></div>
-            </div>
-            <div class="ml-2 overflow-hidden">
-              <div class="flex items-center">
-                <a href="javascript:;" class="font-medium truncate mr-5">{{
-                  faker.users[0].name
-                }}</a>
-                <div class="text-xs text-gray-500 ml-auto whitespace-nowrap">
-                  {{ faker.times[0] }}
-                </div>
-              </div>
-              <div class="w-full truncate text-gray-600 mt-0.5">
-                {{ faker.news[0].shortContent }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Notifications />
     <!-- END: Notifications -->
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8">
@@ -147,18 +122,16 @@
         role="button"
         aria-expanded="false"
       >
-        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
+        <img :src="user.avatar" :alt="user.name" />
       </div>
       <div class="dropdown-menu w-56">
         <div
           class="dropdown-menu__content box bg-theme-26 dark:bg-dark-6 text-white"
         >
           <div class="p-4 border-b border-theme-27 dark:border-dark-3">
-            <div class="font-medium">{{ $f()[0].users[0].name }}</div>
+            <div class="font-medium">{{ user.name }}</div>
             <div class="text-xs text-theme-28 mt-0.5 dark:text-gray-600">
-              {{ $f()[0].jobs[0] }}
+              {{ user.email }}
             </div>
           </div>
           <div class="p-2">
@@ -167,12 +140,6 @@
               class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
             >
               <UserIcon class="w-4 h-4 mr-2" /> Profile
-            </a>
-            <a
-              href=""
-              class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
-            >
-              <EditIcon class="w-4 h-4 mr-2" /> Add Account
             </a>
             <a
               href=""
@@ -204,25 +171,33 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue'
+import { useStore } from '@/store'
+import Notifications from './Notifications'
 
 export default defineComponent({
+  components: {
+    Notifications
+  },
   setup() {
-    const searchDropdown = ref(false);
+    const store = useStore()
+    const user = store.getters['auth/user']
+    const searchDropdown = ref(false)
 
     const showSearchDropdown = () => {
-      searchDropdown.value = true;
-    };
+      searchDropdown.value = true
+    }
 
     const hideSearchDropdown = () => {
-      searchDropdown.value = false;
-    };
+      searchDropdown.value = false
+    }
 
     return {
+      user,
       searchDropdown,
       showSearchDropdown,
       hideSearchDropdown
-    };
+    }
   }
-});
+})
 </script>

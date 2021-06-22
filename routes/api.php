@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\AccountsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TokenController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/sanctum/token', TokenController::class);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', AuthController::class);
+    // Route::get('/users/{user}', [UserController::class, 'show']);
+    // Route::get('/users', [UserController::class, 'index']);
+
+    Route::get('/accounts', [AccountsController::class, 'index']);
+    Route::get('/account/types', [AccountsController::class, 'types']);
+
+    // Route::post('/users/auth/avatar', [AvatarController::class, 'store']);
+
+    // Route::post('/messages', [MessageController::class, 'store']);
+    // Route::get('/messages', [MessageController::class, 'index']);
 });

@@ -153,11 +153,11 @@ import { defineComponent, computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import { helper as $h } from '@/utils/helper'
-import TopBar from '@/components/top-bar/Main.vue'
-import MobileMenu from '@/components/mobile-menu/Main.vue'
-import DarkModeSwitcher from '@/components/dark-mode-switcher/Main.vue'
-import SideMenuTooltip from '@/components/side-menu-tooltip/Main.vue'
-import { linkTo, nestedMenu, enter, leave } from '@/api/menu'
+import TopBar from '@/components/TopBar.vue'
+import MobileMenu from '@/components/MobileMenu.vue'
+import DarkModeSwitcher from '@/components/DarkModeSwitcher.vue'
+import SideMenuTooltip from '@/components/SideMenuTooltip.vue'
+import { linkTo, nestedMenu, enter, leave } from '@/services/menu'
 
 export default defineComponent({
   components: {

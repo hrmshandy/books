@@ -1,11 +1,11 @@
-import { ref } from "vue";
+import { ref } from 'vue'
 import Velocity from 'velocity-animate'
 
 // Toggle mobile menu
-const activeMobileMenu = ref(false);
+const activeMobileMenu = ref(false)
 const toggleMobileMenu = () => {
-  activeMobileMenu.value = !activeMobileMenu.value;
-};
+  activeMobileMenu.value = !activeMobileMenu.value
+}
 
 // Setup side menu
 const findActiveMenu = (subMenu, route) => {
@@ -47,7 +47,7 @@ const linkTo = (menu, router, event) => {
     menu.activeDropdown = !menu.activeDropdown
   } else {
     event.preventDefault()
-    activeMobileMenu.value = false;
+    activeMobileMenu.value = false
     router.push({
       name: menu.pageName
     })

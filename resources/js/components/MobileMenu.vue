@@ -114,10 +114,10 @@
 </template>
 
 <script>
-import { defineComponent, computed, onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { useStore } from "@/store";
-import { helper as $h } from "@/utils/helper";
+import { defineComponent, computed, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from '@/store'
+import { helper as $h } from '@/utils/helper'
 import {
   activeMobileMenu,
   toggleMobileMenu,
@@ -125,28 +125,28 @@ import {
   linkTo,
   enter,
   leave
-} from "@/api/menu";
+} from '@/services/menu'
 
 export default defineComponent({
   setup() {
-    const route = useRoute();
-    const router = useRouter();
-    const store = useStore();
-    const formattedMenu = ref([]);
+    const route = useRoute()
+    const router = useRouter()
+    const store = useStore()
+    const formattedMenu = ref([])
     const mobileMenu = computed(() =>
       nestedMenu(store.state.sideMenu.menu, route)
-    );
+    )
 
     watch(
       computed(() => route.path),
       () => {
-        formattedMenu.value = $h.toRaw(mobileMenu.value);
+        formattedMenu.value = $h.toRaw(mobileMenu.value)
       }
-    );
+    )
 
     onMounted(() => {
-      formattedMenu.value = $h.toRaw(mobileMenu.value);
-    });
+      formattedMenu.value = $h.toRaw(mobileMenu.value)
+    })
 
     return {
       activeMobileMenu,
@@ -156,7 +156,7 @@ export default defineComponent({
       linkTo,
       enter,
       leave
-    };
+    }
   }
-});
+})
 </script>
